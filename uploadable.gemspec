@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'carrierwave', '~> 0.9'
   spec.add_dependency 'carrierwave_backgrounder', '~> 0.3'
+  spec.add_dependency 'carrierwave-ffmpeg', '~> 1.0'
   spec.add_dependency 'mini_magick', '~> 3.6'
 
   spec.add_development_dependency 'bundler', '~> 1.3'

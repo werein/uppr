@@ -1,5 +1,6 @@
 require 'carrierwave'
 require 'carrierwave_backgrounder'
+require 'carrierwave-ffmpeg'
 
 require 'uploadable/version'
 require 'uploadable/file_uploader'

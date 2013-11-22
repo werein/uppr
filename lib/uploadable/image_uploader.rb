@@ -23,6 +23,21 @@ module Uploadable
       ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
     end
 
+    before :store, :remember_cache_id
+    after :store, :delete_tmp_dir
+
+    # store! nil's the cache_id after it finishes so we need to remember it for deletion
+    def remember_cache_id(new_file)
+      @cache_id_was = cache_id
+    end
+    
+    def delete_tmp_dir(new_file)
+      # make sure we don't delete other things accidentally by checking the name pattern
+      if @cache_id_was.present? && @cache_id_was =~ /\A[\d]{8}\-[\d]{4}\-[\d]+\-[\d]{4}\z/
+        FileUtils.rm_rf(File.join(root, cache_dir, @cache_id_was))
+      end
+    end
+
     # Process files as they are uploaded:
     # process :scale => [200, 300]
     #
@@ -30,41 +45,36 @@ module Uploadable
     #   # do something
     # end
 
-    # Create different versions of your uploaded files:
-    # version :thumb do
-    #   process :scale => [50, 50]
-    # end
-
-    version :large do
+    version :original do 
       process resize_to_limit: [1920, nil]
+
+      version :thumb do
+        process resize_to_limit: [720, nil]
+      end
     end
 
-    version :thumb, from_version: :large do
-      process resize_to_limit: [460, nil]
+    version :square do
+      process resize_to_fill: [1920, 1920]
+
+      version :thumb do 
+        process resize_to_fill: [720, 720]
+      end
     end
 
-    version :square_large do 
-      process resize_to_fill: [1180, 1180]
+    version :portrait do 
+      process resize_to_fill: [1080, 1920]
+
+      version :thumb do
+        process resize_to_fill: [720, 1280]
+      end
     end
 
-    version :square, from_version: :square_large do 
-      process resize_to_fill: [460, 460]
-    end
+    version :landscape do
+      process resize_to_fill: [1920, 1080]
 
-    version :portrait_large do 
-      process resize_to_fill: [726, 1180]
-    end
-
-    version :portrait, from_version: :portrait_large do 
-      process resize_to_fill: [460, 726]
-    end
-
-    version :wide_large do 
-      process resize_to_fill: [1180, 726]
-    end
-
-    version :wide, from_version: :wide_large do 
-      process resize_to_fill: [726, 460]
+      version :thumb do 
+        process resize_to_fill: [1280, 720]
+      end
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
