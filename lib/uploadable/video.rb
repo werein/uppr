@@ -1,5 +1,5 @@
 module Uploadable
-  class VideoUploader < CarrierWave::Uploader::Base
+  class Video < CarrierWave::Uploader::Base
     include ::CarrierWave::Backgrounder::Delay
     include CarrierWave::FFmpeg
 

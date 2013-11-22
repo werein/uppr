@@ -2,10 +2,9 @@ require 'carrierwave'
 require 'carrierwave_backgrounder'
 require 'carrierwave-ffmpeg'
 
-require 'uploadable/version'
-require 'uploadable/file_uploader'
-require 'uploadable/image_uploader'
-require 'uploadable/video_uploader'
+require 'uploadable/attachment'
+require 'uploadable/image'
+require 'uploadable/video'
 
 module Uploadable
 end

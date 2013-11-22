@@ -1,12 +1,9 @@
 module Uploadable
-  class ImageUploader < CarrierWave::Uploader::Base
+  class Attachment < CarrierWave::Uploader::Base
     include ::CarrierWave::Backgrounder::Delay
     # Include RMagick or MiniMagick support:
     # include CarrierWave::RMagick
-    include CarrierWave::MiniMagick
-
-    # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-    include Sprockets::Rails::Helper
+    # include CarrierWave::MiniMagick
 
     # Choose what kind of storage to use for this uploader:
     storage :file
@@ -16,11 +13,6 @@ module Uploadable
     # This is a sensible default for uploaders that are meant to be mounted:
     def store_dir
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    end
-
-    # Provide a default URL as a default if there hasn't been a file uploaded:
-    def default_url
-      ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
     end
 
     before :store, :remember_cache_id
@@ -38,6 +30,11 @@ module Uploadable
       end
     end
 
+    # Provide a default URL as a default if there hasn't been a file uploaded:
+    # def default_url
+    #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    # end
+
     # Process files as they are uploaded:
     # process :scale => [200, 300]
     #
@@ -45,42 +42,16 @@ module Uploadable
     #   # do something
     # end
 
-    version :original do 
-      process resize_to_limit: [1920, nil]
+    # Create different versions of your uploaded files:
+    # version :thumb do
+    #   process :scale => [50, 50]
+    # end
 
-      version :thumb do
-        process resize_to_limit: [720, nil]
-      end
-    end
-
-    version :square do
-      process resize_to_fill: [1920, 1920]
-
-      version :thumb do 
-        process resize_to_fill: [720, 720]
-      end
-    end
-
-    version :portrait do 
-      process resize_to_fill: [1080, 1920]
-
-      version :thumb do
-        process resize_to_fill: [720, 1280]
-      end
-    end
-
-    version :landscape do
-      process resize_to_fill: [1920, 1080]
-
-      version :thumb do 
-        process resize_to_fill: [1280, 720]
-      end
-    end
 
     # Add a white list of extensions which are allowed to be uploaded.
     # For images you might use something like this:
     def extension_white_list
-      %w(jpg jpeg gif png)
+      %w(zip rar pdf doc)
     end
 
     # Override the filename of the uploaded files:
@@ -88,6 +59,5 @@ module Uploadable
     # def filename
     #   "something.jpg" if original_filename
     # end
-
   end
 end
