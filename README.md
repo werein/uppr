@@ -5,8 +5,7 @@ Uploader for Rails using CarrierWave uploader and support for image, video and a
 ## Installation
 
 Add this line to your application's Gemfile
-  :::ruby
-  gem 'uploadable'
+	  gem 'uploadable'
 
 ## Usage
 
