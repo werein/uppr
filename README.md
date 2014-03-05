@@ -5,7 +5,6 @@ Uploader for Rails using CarrierWave uploader and support for image, video and a
 ## Installation
 
 Add this line to your application's Gemfile:
-
 	:::ruby
   gem 'uploadable'
 
@@ -13,7 +12,7 @@ Add this line to your application's Gemfile:
 
 Mount uploader to your model
 
-###Example:
+#####Example:
 	:::ruby
 	mount_uploader :image, Uploadable::Image
 	mount_uploader :video, Uploadable::Video
@@ -21,13 +20,13 @@ Mount uploader to your model
 
 It supports background uploading. If you want to upload on background, you need to have attribute_tmp in your database table.
 
-###Example
+#####Example
 	:::ruby
 	store_in_background :image
 	store_in_background :video
 	store_in_background :attachment
 
-## Image versions
+### Image versions
 * `original` 1920px x auto
 * `original.thumb` 720px x auto
 * `square` 1920px x 1920px
@@ -37,7 +36,7 @@ It supports background uploading. If you want to upload on background, you need 
 * `landscape` 1920px x 1080px
 * `landscape.thumb` 1280px x 720px
 
-## Video versions
+### Video versions
 * `mp4` - original resolution in Apple format
 * `mp4.p1080` - 1080p
 * `mp4.p720` - 720p
@@ -48,7 +47,7 @@ It supports background uploading. If you want to upload on background, you need 
 * `webm.p1080` - 1080p
 * `webm.p720` - 720p
 
-## Allowed attachments
+### Allowed attachments
 * zip
 * rar
 * pdf
