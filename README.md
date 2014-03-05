@@ -4,15 +4,15 @@ Uploader for Rails using CarrierWave uploader and support for image, video and a
 
 ## Installation
 
-Add this line to your application's Gemfile:
-	:::ruby
+Add this line to your application's Gemfile
+  :::ruby
   gem 'uploadable'
 
 ## Usage
 
 Mount uploader to your model
 
-#####Example:
+#####Example
 	:::ruby
 	mount_uploader :image, Uploadable::Image
 	mount_uploader :video, Uploadable::Video
