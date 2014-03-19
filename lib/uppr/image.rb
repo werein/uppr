@@ -1,4 +1,4 @@
-module Uploadable
+module Uppr
   class Image < CarrierWave::Uploader::Base
     include ::CarrierWave::Backgrounder::Delay
     # Include RMagick or MiniMagick support:

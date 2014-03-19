@@ -1,4 +1,4 @@
-module Uploadable
+module Uppr
   class Video < CarrierWave::Uploader::Base
     include ::CarrierWave::Backgrounder::Delay
     include CarrierWave::FFmpeg
