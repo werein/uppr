@@ -5,11 +5,13 @@ Uploader for Rails using CarrierWave uploader and support for image, video and a
 ## Installation
 
 * Add this line to your application's Gemfile
+
 ```ruby
 gem 'uppr'
 ```
 
 * Load it in `lib/your_engine/engine.rb` if is used in engine
+
 ```ruby
 require 'uppr'
 ```
@@ -23,6 +25,7 @@ Mount uploader to your model. Uploader supports images, videos and files.
 * Uppr::Attachment
 
 #####Example
+
 ```ruby
 mount_uploader :image, Uppr::Image
 mount_uploader :video, Uppr::Video
@@ -32,6 +35,7 @@ mount_uploader :attachment, Uppr::Attachment
 It supports background uploading. If you want to upload on background, you need to have `attribute_tmp` in your database table.
 
 #####Example
+
 ```ruby
 store_in_background :image
 store_in_background :video
