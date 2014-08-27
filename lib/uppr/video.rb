@@ -8,8 +8,8 @@ module Uppr
         { version: :p720, resolution: '1280x720'}
       ]
 
-    # Choose what kind of storage to use for this uploader:
-    storage Uppr.configuration.video
+    # # Choose what kind of storage to use for this uploader:
+    # storage Uppr.configuration.video
 
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:

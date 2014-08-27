@@ -5,8 +5,8 @@ module Uppr
     # include CarrierWave::RMagick
     include CarrierWave::MiniMagick
 
-    # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-    include Sprockets::Rails::Helper
+    # # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
+    # include Sprockets::Rails::Helper
 
     # Choose what kind of storage to use for this uploader:
     storage Uppr.configuration.image
